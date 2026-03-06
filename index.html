@@ -87,7 +87,7 @@
         }
 
         .hero-text h1 {
-            font-size: 4rem;
+            font-size: 3.2rem; /* Reduced by 20% */
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 10px;
@@ -96,7 +96,7 @@
         /* The cursive text "Good in Ui/Ux designing" */
         .hero-subtitle {
             font-family: 'Allura', cursive;
-            font-size: 2.5rem;
+            font-size: 2.0rem; /* Reduced by 20% */
             color: var(--text-muted); /* Or use var(--accent-color) */
             margin-bottom: 20px;
             font-weight: 400;
@@ -147,7 +147,7 @@
         }
 
         .card h3 {
-            font-size: 1.2rem;
+            font-size: 0.96rem; /* Reduced by 20% */
             margin-bottom: 15px;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -155,7 +155,7 @@
         }
 
         .card p {
-            font-size: 0.9rem;
+            font-size: 0.72rem; /* Reduced by 20% */
             color: #474747;
         }
 
@@ -167,7 +167,7 @@
                 flex-direction: column; /* Image on top on mobile */
                 text-align: center;
                 justify-content: center;
-                padding: 20px;
+                padding: 0;
             }
 
             /* Ensure Page 2 content stacks correctly on mobile */
@@ -179,12 +179,18 @@
             }
             
             .hero-text h1 {
-                font-size: 2.5rem;
+                font-size: 2.0rem; /* Reduced by 20% */
             }
             
             .hero-image {
-                margin-bottom: 30px;
+                width: 100%;
+                margin-bottom: 20px;
                 justify-content: center;
+            }
+
+            .hero-image img {
+                width: 100%;
+                border: none;
             }
 
             /* Reset absolute positioning for mobile */
@@ -200,7 +206,17 @@
                 gap: 20px;
                 width: 100%;
                 align-items: center;
+                padding: 0 20px;
             }
+
+            .p2-cards-row .card {
+                width: 100%;
+            }
+
+            /* Reduce About Text Size on Mobile */
+            .p2-about { margin-top: -20px; }
+            .p2-about h2 { font-size: 1.30rem !important; margin-bottom: 5px !important; }
+            .p2-about p { font-size: 0.7rem !important; padding: 0 20px; }
         }
 
         /* =========================================
@@ -307,7 +323,7 @@
             border: none;
             border-radius: 30px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.8rem; /* Reduced by 20% */
             margin-top: 10px;
             width: 100%;
             transition: background 0.3s;
@@ -353,25 +369,32 @@
                 flex-direction: column; 
                 align-items: center; 
                 justify-content: center; 
-                gap: 40px; 
-                padding-bottom: 76px; /* Moves content up from true center */
+                gap: 40px;
                 animation: fadeIn 0.8s ease;
-            }
+            } 
             .page-3-wrapper.pc-active { display: block; overflow-y: auto; animation: fadeIn 0.8s ease; } /* Allow scrolling if content is tall */
 
             /* Page 2 Positioning */
-            .p2-about { text-align: center; width: 100%; max-width: 800px; }
+            .p2-about { text-align: center; width: 100%; max-width: 1000px; }
+            .p2-about h2 { font-size: 3.5rem !important; }
+            .p2-about p { font-size: 1.25rem !important; }
+
             .p2-cards-row {
                 display: flex;
                 justify-content: center;
                 gap: 30px;
                 width: 100%;
-                max-width: 1200px;
+                max-width: 1200px; 
             }
             .p2-cards-row .card {
                 flex: 1;
-                max-width: 350px;
+                max-width: 400px;
+                padding: 50px 30px;
             }
+            /* Increase size of content within cards on Page 2 */
+            .p2-cards-row .card-icon { font-size: 3.5rem; }
+            .p2-cards-row .card h3 { font-size: 1.2rem; }
+            .p2-cards-row .card p { font-size: 0.95rem; }
 
             /* Page 3 Positioning */
             .page-3-content { padding-top: 100px; } /* Move boxes slightly down */
@@ -380,7 +403,7 @@
                 grid-template-columns: repeat(3, 1fr);
                 gap: 30px;
                 max-width: 1200px;
-                margin: 0 auto;
+                margin: 0 auto; 
                 padding: 0 20px;
             }
 
@@ -395,29 +418,11 @@
                 border: none;
                 border-radius: 30px;
                 font-weight: bold;
-                cursor: pointer;
+                cursor: pointer; 
                 z-index: 1000;
                 font-size: 1rem;
-                overflow: hidden;
             }
             .next-page-btn:hover { transform: scale(1.05); background-color: #004a46; }
-
-            /* Moving white line effect for Next Page Button */
-            .next-page-btn::after {
-                content: '';
-                position: absolute;
-                bottom: 10px;
-                left: 0;
-                width: 100%;
-                height: 2px;
-                background-color: white;
-                transform: scaleX(0);
-                transform-origin: left;
-                transition: transform 0.4s ease-in-out;
-            }
-            .next-page-btn:hover::after {
-                transform: scaleX(1);
-            }
 
             /* Previous Button */
             .prev-page-btn {
@@ -465,9 +470,25 @@
                 transform: translateY(-3px);
             }
 
+            /* The moving white line effect */
+            .hero-nav-btn:not(:first-child)::after {
+                content: '';
+                position: absolute;
+                bottom: 6px; /* Position of the line */
+                left: 0;
+                width: 100%;
+                height: 2px; /* Thickness of the line */
+                background-color: white;
+                transform: scaleX(0); /* Initially hidden by scaling to 0 width */
+                transform-origin: left; /* Ensures the line grows from the left */
+                transition: transform 0.4s ease-in-out;
+            }
+            .hero-nav-btn:not(:first-child):hover::after {
+                transform: scaleX(1); /* Animate to full width on hover */
+            }
         }
         @media (max-width: 768px) {
-            .next-page-btn, .prev-page-btn, .hero-nav { display: none; }
+            .next-page-btn, .prev-page-btn, .hero-nav { display: none !important; }
             
             /* Mobile Grid for Services */
             .services-grid {
@@ -484,7 +505,7 @@
     <!-- HERO SECTION -->
     <section class="hero pc-active">
         <div class="hero-image">
-            <img src="upperpart3.jpeg" alt="Akshay Profile" id="hero-profile-img">
+            <img src="new.png" alt="Akshay Profile" id="hero-profile-img">
         </div>
 
         <!-- Navigation Buttons (PC View) -->
@@ -501,7 +522,7 @@
         <div class="p2-about">
             <h2 style="color: #005f5a; margin-bottom: 15px; text-transform: uppercase; font-size: 3rem; font-weight: bold;">About</h2>
             <p style="color: #504f4f; font-size: 1.1rem;">I am a passionate UI/UX designer and front-end developer dedicated to creating intuitive and visually stunning digital experiences.</p>
-        </div>
+        </div> 
 
         <div class="p2-cards-row">
             <!-- Left Box (Web Design) -->
@@ -515,7 +536,7 @@
             <div class="card">
                 <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
                 <h3>Branding</h3>
-                <p>Building unique identities and strategies to help your business grow.</p>
+                <p>Create a professional logo that helps your business to grow.</p>
             </div>
 
             <!-- New Box (Marketing) -->
